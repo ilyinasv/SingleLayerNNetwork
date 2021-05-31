@@ -1,0 +1,31 @@
+﻿<Window x:Class="SingleLayerNNetwork.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SingleLayerNNetwork"
+        mc:Ignorable="d"
+        Title="NeuralNetwork" Height="600" Width="350" ResizeMode="NoResize">
+    <Grid>
+        <TabControl x:Name="tabControl">
+            <TabItem Header="Обучение с одиночными образами">
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox x:Name="checkBox" Content="Нейрон смещения" HorizontalAlignment="Left" Margin="40,208,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="trainDataInput" HorizontalAlignment="Left" Margin="35,53,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="150"/>
+                    <Button x:Name="buttonTrain" Content="Обучение" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.505,0.455" Height="57" Width="198" Click="buttonTrain_Click"/>
+                    <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="133,25,0,0" VerticalAlignment="Top"/>
+
+                    <TextBox x:Name="OutputTextBox" HorizontalAlignment="Left" Margin="35,341,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="178"/>
+                    <Label x:Name="label_Copy1" Content="Label" HorizontalAlignment="Left" Margin="114,310,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Обучение с различающимися образами">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Распознавание">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
