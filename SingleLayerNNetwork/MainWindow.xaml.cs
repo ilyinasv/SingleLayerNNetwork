@@ -30,56 +30,97 @@ namespace SingleLayerNNetwork
 
         private void buttonTrain_Click(object sender, RoutedEventArgs e)
         {
-            int[][][] testMatrices = new int[5][][];
+            int[][] trainSet = new int[5][];
 
             for (int c = 0; c < 5; c++)
             {
-                testMatrices[c] = new int[5][];
-                for (int i = 0; i < 5; i++)
+                trainSet[c] = new int[35];
+                for (int i = 0; i < 35; i++)
                 {
-                    testMatrices[c][i] = new int[7];
-                    for (int j = 0; j < 7; j++)
-                    {
-                        testMatrices[c][i][j] = 0;
-                    }
+                    trainSet[c][i]= 0;
                 }
             }
 
             //разбиваем входную строку на подстроки
             string[] input = trainDataInput.Text.Split(' ');
 
-            int iterations = 0;
-
-            int[] data = new int[5];
-
-            int h = 0;
-
             for(int n=0; n<5; n++)
             {               
                 int[] intList = input[n].Select(digit => int.Parse(digit.ToString())).ToArray();
-                for (int i=0;i<5;i++)
+                for (int i=0;i<35;i++)
                 {
-                    for (int j = 0; j < 7; j++)
-                    {
-                        testMatrices[n][i][j] = intList[h];
-                        h++;
-                    }
-
+                    trainSet[n][i] = intList[i];
                 }
-                h = 0;
             }
+            //int[][] trainData
 
-            for (int i = 0; i < 5; i++)
+            int[][] tOut = new int[5][];
+            for (int c = 0; c < 5; c++)
             {
-                if (!network.Learn(testMatrices[i], i))
+                tOut[c] = new int[5];
+                for (int i = 0; i < 5; i++)
                 {
-                    i = -1;
-                    iterations += 1;
-                    OutputTextBox.Text = "Обучение в процессе. Итерация:" + iterations;
+                    if (i == c)
+                        tOut[c][i] = 1;
+                    else
+                        tOut[c][i] = 1;
                 }
             }
 
-            OutputTextBox.Text = "Сеть обученна. Количество итераций:" + iterations;
+            int iter = network.Learn(trainSet,tOut, true);
+            OutputTextBox.Text = "Сеть обученна. Количество итераций:" + iter.ToString() + "\n";// + iterations;
+            trainDataInput.Text = " ";
+            /*
+            for (int n = 0; n < 5; n++)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    resultTextBox.Text += [n][i].ToString() + "\t";
+                }
+                resultTextBox.Text += "\n";
+            }
+            */
+
+        }
+
+        private void recognizeData_Click(object sender, RoutedEventArgs e)
+        {
+            //разбиваем входную строку на подстроки
+
+            int[][] recogniseSet = new int[5][];
+
+            for (int c = 0; c < 5; c++)
+            {
+                recogniseSet[c] = new int[35];
+                for (int i = 0; i < 35; i++)
+                {
+                    recogniseSet[c][i] = 0;
+                }
+            }
+
+            //разбиваем входную строку на подстроки
+            string[] input = recognizeTextbox.Text.Split(' ');
+
+            for (int n = 0; n < 5; n++)
+            {
+                int[] intList = input[n].Select(digit => int.Parse(digit.ToString())).ToArray();
+                for (int i = 0; i < 35; i++)
+                {
+                    recogniseSet[n][i] = intList[i];
+                }
+            }
+
+            int [][] res = network.Recognise(recogniseSet);
+
+            for (int n = 0; n < 5; n++)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    resultTextBox.Text += recogniseSet[n][i].ToString()+ "\t";
+                }
+                resultTextBox.Text += "\n";
+            }
+
         }
     }
 }
