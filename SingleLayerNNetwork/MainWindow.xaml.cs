@@ -63,24 +63,23 @@ namespace SingleLayerNNetwork
                     if (i == c)
                         tOut[c][i] = 1;
                     else
-                        tOut[c][i] = 1;
+                        tOut[c][i] = 0; //
                 }
             }
 
             int iter = network.Learn(trainSet,tOut, true);
-            OutputTextBox.Text = "Сеть обученна. Количество итераций:" + iter.ToString() + "\n";// + iterations;
+            double weightUsage = network.CalculateWeightUsage();
+            OutputTextBox.Text = "Сеть обученна. Количество итераций: " + iter.ToString() + "\n" + "Процент не участвующих в распознавании элементов: " + weightUsage.ToString() + "%" + "\n";// + iterations;
             trainDataInput.Text = " ";
-            /*
+
             for (int n = 0; n < 5; n++)
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 35; i++)
                 {
-                    resultTextBox.Text += [n][i].ToString() + "\t";
+                    weightsTextBox.Text += network.Weights[i][n].ToString() + "\t";
                 }
-                resultTextBox.Text += "\n";
-            }
-            */
-
+                weightsTextBox.Text += "\n";
+            }  
         }
 
         private void recognizeData_Click(object sender, RoutedEventArgs e)

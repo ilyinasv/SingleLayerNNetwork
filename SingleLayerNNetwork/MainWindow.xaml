@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SingleLayerNNetwork"
         mc:Ignorable="d"
-        Title="NeuralNetwork" Height="600" Width="550" ResizeMode="NoResize">
+        Title="NeuralNetwork" Height="356" Width="882" ResizeMode="NoResize">
     <Grid>
         <TabControl x:Name="tabControl">
             <TabItem Header="Обучение с одиночными образами">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="trainDataInput" HorizontalAlignment="Left" Margin="35,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="451" Height="176"/>
-                    <Button x:Name="buttonTrain" Content="Обучение" HorizontalAlignment="Left" Margin="34,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.455" Height="57" Width="198" Click="buttonTrain_Click"/>
-                    <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="133,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="trainDataInput" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="176" FontSize="16"/>
+                    <Button x:Name="buttonTrain" Content="Обучение" HorizontalAlignment="Center" Margin="0,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.455" Height="56" Width="198" Click="buttonTrain_Click"/>
+                    <Label x:Name="label" Content="Обучающее множество" HorizontalAlignment="Left" Margin="97,10,0,0" VerticalAlignment="Top"/>
 
-                    <TextBox x:Name="OutputTextBox" HorizontalAlignment="Left" Margin="35,341,0,0" Text="output" TextWrapping="Wrap" VerticalAlignment="Top" Width="451" Height="178" FontFamily="Arial" FontSize="10" SelectionOpacity="1"/>
-                    <Label x:Name="label_Copy1" Content="Label" HorizontalAlignment="Left" Margin="114,310,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="OutputTextBox" HorizontalAlignment="Left" Margin="555,74,0,0" Text="output" TextWrapping="Wrap" VerticalAlignment="Top" Width="311" Height="102" FontFamily="Arial" FontSize="14" SelectionOpacity="1"/>
+                    <Label x:Name="label_Copy1" Content="Label" HorizontalAlignment="Left" Margin="692,43,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="weightsTextBox" HorizontalAlignment="Center" Margin="0,229,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="856" Height="74" FontSize="6" FontWeight="Bold"/>
+                    <Label x:Name="label2" Content="Label" HorizontalAlignment="Left" Margin="386,198,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Обучение с различающимися образами">
@@ -23,14 +25,11 @@
             </TabItem>
             <TabItem Header="Распознавание">
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="201*"/>
-                        <ColumnDefinition Width="143*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button x:Name="recognizeData" Content="Распознать" Margin="82,231,82,241" Click="recognizeData_Click" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="recognizeTextbox" HorizontalAlignment="Left" Margin="10,34,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="166" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="resultTextBox" HorizontalAlignment="Left" Margin="10,355,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="139" FontSize="12" Grid.ColumnSpan="2"/>
-                    <Label x:Name="label1" Content="Распознанный символ" HorizontalAlignment="Left" Margin="46,311,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22" Grid.ColumnSpan="2"/>
+
+                    <Button x:Name="recognizeData" Content="Распознать" Margin="350,84,379,388" Click="recognizeData_Click"/>
+                    <TextBox x:Name="recognizeTextbox" HorizontalAlignment="Left" Margin="10,34,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="166"/>
+                    <TextBox x:Name="resultTextBox" HorizontalAlignment="Left" Margin="523,61,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="139" FontSize="12"/>
+                    <Label x:Name="label1" Content="Распознанный символ" HorizontalAlignment="Left" Margin="557,22,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
 
                 </Grid>
             </TabItem>
