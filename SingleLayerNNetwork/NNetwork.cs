@@ -10,7 +10,7 @@ namespace SingleLayerNNetwork
         public int iterations = 1;
         public Neuron[] neurons = new Neuron[5];
         public int[][] Weights = new int[35][];
-        public int[][] yOut = new int[5][]; //Выходной вектор Y
+        public int[] yOut = new int[5]; //Выходной вектор Y
 
         public int[] w0 = new int[5];
         public int[] s = new int[5];
@@ -19,10 +19,11 @@ namespace SingleLayerNNetwork
         {
             for (int c = 0; c < 5; c++)
             {
-                yOut[c] = new int [5];
+                //yOut[c] = new int [5];
                 w0[c] = 0;
                 s[c] = 0;
                 neurons[c] = new Neuron();
+                /*
                 for (int i = 0; i < 5; i++)
                 {
                     if (i == c)
@@ -30,6 +31,7 @@ namespace SingleLayerNNetwork
                     else
                         yOut[c][i] = 0;                   
                 }
+                */
             }
             for (int i = 0; i < 35; i++)
             {
@@ -61,14 +63,14 @@ namespace SingleLayerNNetwork
                         {
                             s[j] += Weights[i][j] * trainData[k][i];
                             if (bias)
-                                yOut[k][j] = Output(s[j] + w0[j]);
+                                yOut[j] = Output(s[j] + w0[j]);
                             else
-                                yOut[k][j] = Output(s[j]);
+                                yOut[j] = Output(s[j]);
                         };
                     };
                     for (int i = 0; i < 5; i++)
                     {
-                        if (tOut[k][i] != yOut[k][i])
+                        if (tOut[k][i] != yOut[i])
                             errors += 1;
                     };
 
@@ -76,13 +78,13 @@ namespace SingleLayerNNetwork
                     {
                         for (int j = 0; j < 5; j++)
                         {
-                            Weights[i][j] += trainData[k][i] * (tOut[k][j] - yOut[k][j]);
+                            Weights[i][j] += trainData[k][i] * (tOut[k][j] - yOut[j]);
                         }
                     }
                     if (bias)
                     {
                         for (int i = 0; i < 5; i++)
-                            w0[i] += (tOut[k][i] - yOut[k][i]);
+                            w0[i] += (tOut[k][i] - yOut[i]);
                     }
                 }
                 if (errors == 0)
@@ -107,10 +109,9 @@ namespace SingleLayerNNetwork
                 {                  
                     for (int i = 0; i < 35; i++)
                     {
-                        yOut[c][j] += Weights[i][j] * recogniseData[c][i]; //
-                        //yOut[c][j] = Output(yOut[c][j]-w0[j]);
-                        yOut[c][j] = Output(yOut[c][j]);
-                        result[c][j] = yOut[c][j];
+                        yOut[j] += Weights[i][j] * recogniseData[c][i]; 
+                        yOut[j] = Output(yOut[j]);
+                        result[c][j] = yOut[j];
                     }
                 }
             }
