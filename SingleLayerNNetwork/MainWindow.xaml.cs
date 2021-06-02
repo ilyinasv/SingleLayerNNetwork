@@ -30,6 +30,8 @@ namespace SingleLayerNNetwork
 
         private void buttonTrain_Click(object sender, RoutedEventArgs e)
         {
+            OutputTextBox.Text = "";
+            weightsTextBox.Text = "";
             int iter = 0;
             double weightUsage = 0;
 
@@ -106,6 +108,8 @@ namespace SingleLayerNNetwork
 
         private void recognizeData_Click(object sender, RoutedEventArgs e)
         {
+            resultTextBox.Text = "";
+
             //разбиваем входную строку на подстроки
             int[][] recogniseSet = new int[5][];
 
@@ -139,7 +143,7 @@ namespace SingleLayerNNetwork
                 }
                 resultTextBox.Text += "\n";
             }
-
+            recognizeTextbox.Text = "";
         }
     }
 }

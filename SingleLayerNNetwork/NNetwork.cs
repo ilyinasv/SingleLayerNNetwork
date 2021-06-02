@@ -120,21 +120,23 @@ namespace SingleLayerNNetwork
         public double CalculateWeightUsage() //подсчёт не учавствующих в распознавании элементов
         {
             int zeroWeightsAmount = 0;
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < 35; j++)
             {
-                if (Weights0[j] == 0 && biasNeuron)
-                    zeroWeightsAmount += 1;
-                for (int i = 0; i < 35; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    if (Weights[i][j] == 0)
-                        zeroWeightsAmount += 1;                   
+                    if (Weights[j][i] == 0)
+                    {
+                        if (i < 4)
+                            continue;
+                        else
+                            zeroWeightsAmount += 1;
+                    }
+                    else
+                        break;
                 }
             }
             double percentage;
-            if (biasNeuron)
-                percentage=zeroWeightsAmount * 100 / 180;
-            else
-                percentage = zeroWeightsAmount * 100 / 175;
+            percentage = zeroWeightsAmount * 100 / 35;
             return percentage;
         }
 
@@ -149,11 +151,11 @@ namespace SingleLayerNNetwork
             {
                 images[n] = new string[5];
             }
-            images[0][0] = "10000011000001111111110000011000001"; // символ I0
-            images[0][1] = "01000101010001100100110001010100010"; // символ S0
-            images[0][2] = "11111110100000001000001000001111111"; // символ M0
-            images[0][3] = "01111101000001100000110000010111110"; // символ 00
-            images[0][4] = "10000011000010100010010010001110000"; // символ 70
+            images[0][0] = "10000011000001111111110000011000001"; // символ I
+            images[0][1] = "01000101010001100100110001010100010"; // символ S
+            images[0][2] = "11111110100000001000001000001111111"; // символ M
+            images[0][3] = "01111101000001100000110000010111110"; // символ 0
+            images[0][4] = "10000011000010100010010010001110000"; // символ 7
 
             images[1][0] = "00000001000001111111110000010000000"; 
             images[1][1] = "01100101001001100100110010010100110"; 

@@ -8,7 +8,7 @@
         Title="NeuralNetwork" Height="360" Width="882">
     <Grid>
         <TabControl x:Name="tabControl">
-            <TabItem Header="Обучение с одиночными образами">
+            <TabItem Header="Обучение">
                 <Grid Background="#FFE5E5E5">
                     <TextBox x:Name="trainDataInput" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="176" FontSize="16"/>
                     <Button x:Name="buttonTrain" Content="Обучение" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.455" Height="56" Width="198" Click="buttonTrain_Click"/>
