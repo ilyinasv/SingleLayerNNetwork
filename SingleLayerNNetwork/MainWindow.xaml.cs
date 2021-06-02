@@ -38,7 +38,7 @@ namespace SingleLayerNNetwork
                 network.biasNeuron = true;
             }
 
-            int[][] tOut = new int[5][];
+            int[][] tOut = new int[5][];//вектор выходных значений Т
             for (int c = 0; c < 5; c++)
             {
                 tOut[c] = new int[5];

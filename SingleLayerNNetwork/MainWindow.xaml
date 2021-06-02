@@ -35,10 +35,10 @@
             </TabItem>
             <TabItem Header="Распознавание">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="recognizeData" Content="Распознать" Margin="265,115,378,137" Click="recognizeData_Click" FontSize="18" Grid.Column="2"/>
+                    <Button x:Name="recognizeData" Content="Распознать" Margin="355,120,362,132" Click="recognizeData_Click" FontSize="18"/>
                     <TextBox x:Name="recognizeTextbox" HorizontalAlignment="Left" Margin="10,34,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="236" Grid.ColumnSpan="3"/>
-                    <TextBox x:Name="resultTextBox" HorizontalAlignment="Left" Margin="437,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="324" Height="228" FontSize="12" Grid.Column="2"/>
-                    <Label x:Name="label1" Content="Результат распознавания" HorizontalAlignment="Left" Margin="494,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Grid.Column="2"/>
+                    <TextBox x:Name="resultTextBox" HorizontalAlignment="Left" Margin="532,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="324" Height="228" FontSize="12"/>
+                    <Label x:Name="label1" Content="Результат распознавания" HorizontalAlignment="Left" Margin="578,5,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
                     <Label x:Name="label1_Copy" Content="Распознаваемые образы" HorizontalAlignment="Left" Margin="47,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Grid.ColumnSpan="2" Grid.Column="1"/>
 
                 </Grid>
