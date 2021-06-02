@@ -5,31 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SingleLayerNNetwork"
         mc:Ignorable="d"
-        Title="NeuralNetwork" Height="356" Width="882" ResizeMode="NoResize">
+        Title="NeuralNetwork" Height="356" Width="882">
     <Grid>
         <TabControl x:Name="tabControl">
             <TabItem Header="Обучение с одиночными образами">
                 <Grid Background="#FFE5E5E5">
                     <TextBox x:Name="trainDataInput" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="176" FontSize="16"/>
-                    <Button x:Name="buttonTrain" Content="Обучение" HorizontalAlignment="Center" Margin="0,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.455" Height="56" Width="198" Click="buttonTrain_Click"/>
-                    <Label x:Name="label" Content="Обучающее множество" HorizontalAlignment="Left" Margin="97,10,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="buttonTrain" Content="Обучение" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.455" Height="56" Width="198" Click="buttonTrain_Click"/>
+                    <Label x:Name="label" Content="Обучающее множество" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
 
-                    <TextBox x:Name="OutputTextBox" HorizontalAlignment="Left" Margin="555,74,0,0" Text="output" TextWrapping="Wrap" VerticalAlignment="Top" Width="311" Height="102" FontFamily="Arial" FontSize="14" SelectionOpacity="1"/>
-                    <Label x:Name="label_Copy1" Content="Label" HorizontalAlignment="Left" Margin="692,43,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="OutputTextBox" HorizontalAlignment="Left" Margin="555,74,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="311" Height="123" FontFamily="Arial" FontSize="14" SelectionOpacity="1"/>
+                    <Label x:Name="label_Copy1" Content="Результат обучения" HorizontalAlignment="Left" Margin="628,36,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <TextBox x:Name="weightsTextBox" HorizontalAlignment="Center" Margin="0,229,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="856" Height="74" FontSize="6" FontWeight="Bold"/>
-                    <Label x:Name="label2" Content="Label" HorizontalAlignment="Left" Margin="386,198,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label2" Content="Матрица весовых коэффициентов" HorizontalAlignment="Left" Margin="330,200,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <GroupBox x:Name="groupBox" Header="" Margin="339,0,339,181">
+                        <Grid>
+                            <RadioButton x:Name="singleImagesRadioButton" HorizontalAlignment="Center" Margin="0,15,0,44" Width="188">
+                                <RadioButton.Content>
+                                    <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с одиночными образами" Background="#FFE5E5E5"/>
+                                </RadioButton.Content>
+                            </RadioButton>
+                            <RadioButton x:Name="differentImagesRadioButton" HorizontalAlignment="Center" Margin="0,69,0,10" Height="29" Width="188">
+                                <RadioButton.Content>
+                                    <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с различающимися образами" Background="#FFE5E5E5"/>
+                                </RadioButton.Content>
+                            </RadioButton>
+                        </Grid>
+                    </GroupBox>
+
                 </Grid>
-            </TabItem>
-            <TabItem Header="Обучение с различающимися образами">
-                <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Распознавание">
                 <Grid Background="#FFE5E5E5">
-
-                    <Button x:Name="recognizeData" Content="Распознать" Margin="350,84,379,388" Click="recognizeData_Click"/>
-                    <TextBox x:Name="recognizeTextbox" HorizontalAlignment="Left" Margin="10,34,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="166"/>
-                    <TextBox x:Name="resultTextBox" HorizontalAlignment="Left" Margin="523,61,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="139" FontSize="12"/>
-                    <Label x:Name="label1" Content="Распознанный символ" HorizontalAlignment="Left" Margin="557,22,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
+                    <Button x:Name="recognizeData" Content="Распознать" Margin="265,115,378,137" Click="recognizeData_Click" FontSize="18" Grid.Column="2"/>
+                    <TextBox x:Name="recognizeTextbox" HorizontalAlignment="Left" Margin="10,34,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="236" Grid.ColumnSpan="3"/>
+                    <TextBox x:Name="resultTextBox" HorizontalAlignment="Left" Margin="437,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="324" Height="228" FontSize="12" Grid.Column="2"/>
+                    <Label x:Name="label1" Content="Результат распознавания" HorizontalAlignment="Left" Margin="494,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Grid.Column="2"/>
+                    <Label x:Name="label1_Copy" Content="Распознаваемые образы" HorizontalAlignment="Left" Margin="47,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Grid.ColumnSpan="2" Grid.Column="1"/>
 
                 </Grid>
             </TabItem>

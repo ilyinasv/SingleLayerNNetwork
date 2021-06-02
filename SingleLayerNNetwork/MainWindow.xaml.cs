@@ -30,29 +30,8 @@ namespace SingleLayerNNetwork
 
         private void buttonTrain_Click(object sender, RoutedEventArgs e)
         {
-            int[][] trainSet = new int[5][];
-
-            for (int c = 0; c < 5; c++)
-            {
-                trainSet[c] = new int[35];
-                for (int i = 0; i < 35; i++)
-                {
-                    trainSet[c][i]= 0;
-                }
-            }
-
-            //разбиваем входную строку на подстроки
-            string[] input = trainDataInput.Text.Split(' ');
-
-            for(int n=0; n<5; n++)
-            {               
-                int[] intList = input[n].Select(digit => int.Parse(digit.ToString())).ToArray();
-                for (int i=0;i<35;i++)
-                {
-                    trainSet[n][i] = intList[i];
-                }
-            }
-            //int[][] trainData
+            int iter = 0;
+            double weightUsage = 0;
 
             int[][] tOut = new int[5][];
             for (int c = 0; c < 5; c++)
@@ -63,15 +42,53 @@ namespace SingleLayerNNetwork
                     if (i == c)
                         tOut[c][i] = 1;
                     else
-                        tOut[c][i] = 0; //
+                        tOut[c][i] = 0; 
                 }
             }
 
-            int iter = network.Learn(trainSet,tOut, true);
-            double weightUsage = network.CalculateWeightUsage();
-            OutputTextBox.Text = "Сеть обученна. Количество итераций: " + iter.ToString() + "\n" + "Процент не участвующих в распознавании элементов: " + weightUsage.ToString() + "%" + "\n";// + iterations;
+            if ((bool)singleImagesRadioButton.IsChecked) //если выбрано обучение на одиночных входных образах
+            {
+                int[][] trainSet = new int[5][];
+
+                for (int c = 0; c < 5; c++)
+                {
+                    trainSet[c] = new int[35];
+                    for (int i = 0; i < 35; i++)
+                    {
+                        trainSet[c][i] = 0;
+                    }
+                }
+
+                string[] input = trainDataInput.Text.Split(' ');
+
+                for (int n = 0; n < 5; n++)
+                {
+                    int[] intList = input[n].Select(digit => int.Parse(digit.ToString())).ToArray();
+                    for (int i = 0; i < 35; i++)
+                    {
+                        trainSet[n][i] = intList[i];
+                    }
+                }
+
+                iter = network.Learn(trainSet, tOut);
+                weightUsage = network.CalculateWeightUsage();
+            }
+            else //если обучение на различающихся образах
+            {
+                List<int[][]> trainDataList = network.GetTrainSet();
+                foreach(int[][] trainDataSet in trainDataList)
+                {
+                    int iterat = network.Learn(trainDataSet,tOut);
+                    if (iterat > iter)
+                        iter = iterat;
+                }
+                weightUsage = network.CalculateWeightUsage();
+            };
+            
+            OutputTextBox.Text = "Сеть обучена. Количество итераций: " + iter.ToString() + "\n" + "Процент не участвующих в распознавании элементов: " + weightUsage.ToString() + "%" + "\n";// + iterations;
             trainDataInput.Text = " ";
 
+            //вывод матрицы весовых коэффициентов
             for (int n = 0; n < 5; n++)
             {
                 for (int i = 0; i < 35; i++)
@@ -85,7 +102,6 @@ namespace SingleLayerNNetwork
         private void recognizeData_Click(object sender, RoutedEventArgs e)
         {
             //разбиваем входную строку на подстроки
-
             int[][] recogniseSet = new int[5][];
 
             for (int c = 0; c < 5; c++)
@@ -97,7 +113,6 @@ namespace SingleLayerNNetwork
                 }
             }
 
-            //разбиваем входную строку на подстроки
             string[] input = recognizeTextbox.Text.Split(' ');
 
             for (int n = 0; n < 5; n++)
