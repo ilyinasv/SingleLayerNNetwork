@@ -33,6 +33,11 @@ namespace SingleLayerNNetwork
             int iter = 0;
             double weightUsage = 0;
 
+            if((bool)biasNeuronCheckBox.IsChecked) //если нужен нейрон смещения
+            {
+                network.biasNeuron = true;
+            }
+
             int[][] tOut = new int[5][];
             for (int c = 0; c < 5; c++)
             {

@@ -9,14 +9,15 @@ namespace SingleLayerNNetwork
     {
         public int iterations = 1;
         public int[][] Weights = new int[35][];
-
-        public int[] w0 = new int[5];
+        public bool biasNeuron = false;
+        public int[] Weights0 = new int[5];
 
         public NNetwork()
         {
             for (int i = 0; i < 35; i++)
             {
                 Weights[i] = new int[5];
+                Weights0[i] = 0;
             }
         }
 
@@ -29,7 +30,7 @@ namespace SingleLayerNNetwork
         }
 
 
-        public int Learn(int[][] trainData, int[][] tOut)
+        public int Learn(int[][] trainData, int[][] tOut) //обучение сети
         {
             while (true)
             {
@@ -48,7 +49,10 @@ namespace SingleLayerNNetwork
                         for (int i = 0; i < 35; i++)
                         {
                             s[j] += Weights[i][j] * trainData[k][i];
-                            yOut[j] = Output(s[j]);
+                            if(biasNeuron)
+                                yOut[j] = Output(s[j]+Weights0[j]);
+                            else
+                                yOut[j] = Output(s[j]);
                         };
                     };
                     for (int i = 0; i < 5; i++)
@@ -63,9 +67,13 @@ namespace SingleLayerNNetwork
                             Weights[i][j] += trainData[k][i] * (tOut[k][j] - yOut[j]);
                         }
                     }
-
+                    if(biasNeuron)
+                        for (int i = 0; i < 35; i++)
+                        {
+                            Weights0[i] += tOut[k][i] - yOut[i];
+                        };
                 }
-                if (errors == 0 || iterations==100)
+                if (errors == 0)
                     break;
                 else
                     iterations += 1;
@@ -73,7 +81,7 @@ namespace SingleLayerNNetwork
             return iterations;
         }
 
-        public int [][] Recognise(int[][] recogniseData)
+        public int [][] Recognise(int[][] recogniseData) //распознавание
         {
             int[][] result = new int[5][];
             for (int c = 0; c < 5; c++)
@@ -93,7 +101,10 @@ namespace SingleLayerNNetwork
                     for (int i = 0; i < 35; i++)
                     {
                         yOut[j] += Weights[i][j] * recogniseData[c][i]; 
-                        yOut[j] = Output(yOut[j]);
+                        if(biasNeuron)
+                            yOut[j] = Output(yOut[j]+Weights0[j]);
+                        else
+                            yOut[j] = Output(yOut[j]);
                         result[c][j] = yOut[j];
                     }
                 }
@@ -102,8 +113,8 @@ namespace SingleLayerNNetwork
             return result;
         }
 
-        //подсчёт не учавствующих в распознавании элементов
-        public double CalculateWeightUsage()
+        
+        public double CalculateWeightUsage() //подсчёт не учавствующих в распознавании элементов
         {
             int zeroWeightsAmount = 0;
             for (int j = 0; j < 5; j++)
@@ -112,13 +123,15 @@ namespace SingleLayerNNetwork
                 {
                     if (Weights[i][j] == 0)
                         zeroWeightsAmount += 1;
+                    if (Weights0[i] == 0 && biasNeuron)
+                        if (Weights[i][j] == 0) ;
                 }
             }
             double percentage = zeroWeightsAmount * 100 / 175;
             return percentage;
         }
 
-        public List<int[][]> GetTrainSet()
+        public List<int[][]> GetTrainSet() //наборы различающихся тренировочных образов
         {
             int[][] trainData = new int[5][];
 

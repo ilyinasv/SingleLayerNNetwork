@@ -18,21 +18,19 @@
                     <Label x:Name="label_Copy1" Content="Результат обучения" HorizontalAlignment="Left" Margin="628,36,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <TextBox x:Name="weightsTextBox" HorizontalAlignment="Center" Margin="0,229,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="856" Height="74" FontSize="6" FontWeight="Bold"/>
                     <Label x:Name="label2" Content="Матрица весовых коэффициентов" HorizontalAlignment="Left" Margin="330,200,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <GroupBox x:Name="groupBox" Header="" Margin="339,0,339,181">
-                        <Grid>
-                            <RadioButton x:Name="singleImagesRadioButton" HorizontalAlignment="Center" Margin="0,15,0,44" Width="188">
-                                <RadioButton.Content>
-                                    <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с одиночными образами" Background="#FFE5E5E5"/>
-                                </RadioButton.Content>
-                            </RadioButton>
-                            <RadioButton x:Name="differentImagesRadioButton" HorizontalAlignment="Center" Margin="0,69,0,10" Height="29" Width="188">
-                                <RadioButton.Content>
-                                    <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с различающимися образами" Background="#FFE5E5E5"/>
-                                </RadioButton.Content>
-                            </RadioButton>
-                        </Grid>
-                    </GroupBox>
-
+                    <Grid>
+                        <RadioButton x:Name="singleImagesRadioButton" HorizontalAlignment="Center" Margin="0,15,0,44" Width="188">
+                            <RadioButton.Content>
+                                <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с одиночными образами" Background="#FFE5E5E5"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton x:Name="differentImagesRadioButton" HorizontalAlignment="Center"  Height="29" Width="188" Margin="0,58,0,225">
+                            <RadioButton.Content>
+                                <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с различающимися образами" Background="#FFE5E5E5"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </Grid>
+                    <CheckBox x:Name="biasNeuronCheckBox" Content="Нейрон смещения" HorizontalAlignment="Left" Margin="350,109,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Распознавание">
