@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SingleLayerNNetwork"
         mc:Ignorable="d"
-        Title="NeuralNetwork" Height="356" Width="882">
+        Title="NeuralNetwork" Height="360" Width="882">
     <Grid>
         <TabControl x:Name="tabControl">
             <TabItem Header="Обучение с одиночными образами">
@@ -19,12 +19,12 @@
                     <TextBox x:Name="weightsTextBox" HorizontalAlignment="Center" Margin="0,229,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="856" Height="74" FontSize="6" FontWeight="Bold"/>
                     <Label x:Name="label2" Content="Матрица весовых коэффициентов" HorizontalAlignment="Left" Margin="330,200,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <Grid>
-                        <RadioButton x:Name="singleImagesRadioButton" HorizontalAlignment="Center" Margin="0,15,0,44" Width="188">
+                        <RadioButton x:Name="singleImagesRadioButton" HorizontalAlignment="Center" Margin="0,15,0,213" Width="188">
                             <RadioButton.Content>
                                 <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с одиночными образами" Background="#FFE5E5E5"/>
                             </RadioButton.Content>
                         </RadioButton>
-                        <RadioButton x:Name="differentImagesRadioButton" HorizontalAlignment="Center"  Height="29" Width="188" Margin="0,58,0,225">
+                        <RadioButton x:Name="differentImagesRadioButton" HorizontalAlignment="Center"  Height="29" Width="188" Margin="0,70,0,213" >
                             <RadioButton.Content>
                                 <TextBox TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Text="Обучающее множество с различающимися образами" Background="#FFE5E5E5"/>
                             </RadioButton.Content>

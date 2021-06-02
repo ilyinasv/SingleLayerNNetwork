@@ -17,6 +17,9 @@ namespace SingleLayerNNetwork
             for (int i = 0; i < 35; i++)
             {
                 Weights[i] = new int[5];
+            }
+            for (int i = 0; i < 5; i++)
+            {
                 Weights0[i] = 0;
             }
         }
@@ -68,7 +71,7 @@ namespace SingleLayerNNetwork
                         }
                     }
                     if(biasNeuron)
-                        for (int i = 0; i < 35; i++)
+                        for (int i = 0; i < 5; i++)
                         {
                             Weights0[i] += tOut[k][i] - yOut[i];
                         };
@@ -119,15 +122,19 @@ namespace SingleLayerNNetwork
             int zeroWeightsAmount = 0;
             for (int j = 0; j < 5; j++)
             {
+                if (Weights0[j] == 0 && biasNeuron)
+                    zeroWeightsAmount += 1;
                 for (int i = 0; i < 35; i++)
                 {
                     if (Weights[i][j] == 0)
-                        zeroWeightsAmount += 1;
-                    if (Weights0[i] == 0 && biasNeuron)
-                        if (Weights[i][j] == 0) ;
+                        zeroWeightsAmount += 1;                   
                 }
             }
-            double percentage = zeroWeightsAmount * 100 / 175;
+            double percentage;
+            if (biasNeuron)
+                percentage=zeroWeightsAmount * 100 / 180;
+            else
+                percentage = zeroWeightsAmount * 100 / 175;
             return percentage;
         }
 
